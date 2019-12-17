@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from Program.models import *
 import random
 # Create your views here.
@@ -61,7 +61,65 @@ def select(request):
     # user_list = User.objects.all()
     # user = User.objects.get(id=5)
     # plan = Plan.objects.get(id=14).user_set.all()
-    lesson = Plan.objects.get(id=3).lesson_set.all()
-    return render(request,'empty.html',locals())
+    # lesson = Plan.objects.get(id=3).lesson_set.all()
+    plan = User.objects.get(nickname='金昊宇').plan.name
+    print(plan)
+    print(type(plan))
+    return HttpResponse('1111')
+
+    # return render(request, 'empty.html', locals())
+
+
+def Post(request):
+    # if request.method == 'POST':
+    #     name = request.POST.get('username')
+    #     pwd = request.POST.get('pwd')
+    #     print(name, pwd)
+    nickname = User.objects.get(nickname='孙鸿文')
+    print(nickname.id)
+    return render(request,'empty1.html', locals())
+
+import hashlib
+def jiami(password):
+    md5 = hashlib.md5()
+    md5.update(password.encode())
+    result = md5.hexdigest()
+    return result
+
+
+def Login(request):
+    if request.method == 'POST':
+        name = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('pwd')
+        picture = request.FILES.get('picture')
+
+        user = LoginUser()
+        user.name = name
+        user.email = email
+        user.password = jiami(password)
+        user.picture = picture
+        user.save()
+        return redirect('/index/')
+    return render(request,'login.html')
+
+
+
+def index1(request):
+
+    # ret = User.objects.raw('select * from Program_user ')
+    # print(type(ret))
+    # for i in ret:
+    #     print(i)
+
+    #
+    # lesson = User.objects.get(nickname='柏子昂').plan.name
+    # print(lesson)
+    # lesson = Plan.objects.get(id=3).lesson_set.all()
+    # print(lesson)
+
+    return HttpResponse('xxxx')
+
+
 
 

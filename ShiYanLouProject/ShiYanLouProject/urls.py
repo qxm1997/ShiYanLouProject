@@ -22,8 +22,12 @@ urlpatterns = [
     path('index/', index),
     path('andPlan/', andPlan),
     path('addUser/', addUser),
+    path('login/', Login),
 
 ]
 urlpatterns += [
     path('select/', select),
+    path('post/', Post),
+    path('index1/', index1),
+
 ]

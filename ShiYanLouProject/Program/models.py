@@ -30,3 +30,9 @@ class Lesson(models.Model):
 
     def __str__(self):
         return self.lable
+
+class LoginUser(models.Model):
+    name = models.CharField(max_length=32)
+    email = models.EmailField()
+    password = models.CharField(max_length=32)
+    picture = models.ImageField(upload_to='img')

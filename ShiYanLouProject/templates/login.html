@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block style %}
+    <style>
+        .form{
+            height: 1000px;
+            margin: 100px auto;
+            font-size: 24px;
+        }
+    .form p{
+        margin: 0 auto;
+        margin-top: 20px;
+    }
+    </style>
+
+{% endblock %}
+
+{% block content %}
+    <div style="height: 1000px" align="center">
+        <div class="form">
+            <form  class="" action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <p>
+                    name: <input type="text" name="username" placeholder="用户名">
+                </p>
+                 <p>
+                    email: <input type="email" name="email">
+                </p>
+                 <p>
+                    password: <input type="password" name="pwd">
+                </p>
+                 <p>
+                    picture: <input type="file" name="picture">
+                </p>
+                 <p>
+                    login: <input type="submit" value="注册">
+                </p>
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}
